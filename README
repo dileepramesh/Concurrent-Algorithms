@@ -3,38 +3,25 @@ Name: Dileep Ramesh
 ID: 108028179
 Email: dramesh@cs.stonybrook.edu
 
-This submission includes the code for the following 4 algorithms:
+This submission includes the code for the following 2 algorithms:
 
 1. Running Lamport's bakery algorithm
 2. Running Lamport's fast mutual exclusion algorithm
-3. Ricart-Agrawala's token-based algorithm
-4. Suzuki-Kasami's token-based algorithm
 
 The following files have been included:
 
 1. Fast.py - Implements Lamport's fast mutual exclusion algorithm
 2. Bakery.py - Implements Lamport's bakery algorithm
 3. main.py - Driver program for (1) and (2)
-4. RAtoken.py - Implements Ricart-Agrawala's token based algorithm
-5. SKtoken.py - Implements Suzuki-Kasami's token based algorithm
-6. Concurrent.log - Contains sample output from running algorithms (1) and (2)
-7. RAtoken.log - Contains sample output from running algorithm (3)
-8. SKtoken.log - Contains sample output from running algorithm (4)
+6. Log - Contains sample output from running algorithms (1) and (2)
 
 How to run the programs
 -----------------------
 
-1. Algorithms (1) and (2)
-    "python3.2 main.py 10 100"
+python3.2 main.py 10 100
 
-2. Algorithm (3)
-    "python3.2 -m distalgo.runtime --logfile RAtoken.log RAtoken.dis 10 200"
-
-3. Algorithm (4)
-    "python3.2 -m distalgo.runtime --logfile SKtoken.log SKtoken.dis 10 200"
-
-Description for Concurrent Algorithms
--------------------------------------
+Algorithm Description
+---------------------
 
  - The main.py driver program does the following:
    - Get the 'n' and 'm' parameters from user. Set default values if not given.
@@ -56,36 +43,4 @@ Description for Concurrent Algorithms
    - main(): Contains the CS task that is passed to cs(). This will loop through 
              the list of requests and call cs() till all the requests are exhausted.
    - run(): Thread start routine. Simply calls main()
-
-Description for Distributed Algorithms
---------------------------------------
-
- - RAtoken.dis and SKtoken.dis files contains the following functions:
-   - Global main() method
-     - Gets the 'n' and 'm' parameters from the user and calls setup() routine for each process
-     - Starts the processes
-   - RAtoken Class
-     - setup(): Takes the list of processes, request count for the process and
-                assigns token to the process based on a passed flag
-     - cs(): Contains the CS request, entry and exit code blocks. Also
-             contains code blocks to handle requests from other processes
-     - main(): Contains the CS task that is passed to cs(). This will loop 
-               through the list of requests and call cs() till all the requests 
-               are exhausted.
-
-Issues
-------
-
- - Had to put "await (False)" at the end of main() in RAtoken.dis and SKtoken.dis
-   to avoid the "Connection refused" error
-
- - Have written two separate driver programs for the distributed algorithms in the
-   respective files, RAtoken.dis and SKtoken.dis as I couldn't find out a way to
-   call functions across files in DistAlgo.
-
-Misc
-----
-
- - This file has been edited in VI. Please let me know if the indentations are
- messed up :) Will submit a separate copy.
 
